@@ -1,0 +1,39 @@
+
+/*10. Dutch National Flag / 3-way partition — partition array into three groups (e.g., <, =, > pivot) in one pass.
+Real life: segregate shipments into fragile/standard/priority bins quickly.*/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void dutchNationalFlag(vector<int>& nums, int pivot) {
+    int low = 0, mid = 0, high = nums.size() - 1;
+
+    while (mid <= high) {
+        if (nums[mid] < pivot) {
+            swap(nums[low], nums[mid]);
+            low++;
+            mid++;
+        } else if (nums[mid] == pivot) {
+            mid++;
+        } else { // nums[mid] > pivot
+            swap(nums[mid], nums[high]);
+            high--;
+        }
+    }
+}
+
+int main() {
+    vector<int> nums = {2, 9, 2, 1, 8, 6, 3, 2};
+    int pivot = 2;
+
+    dutchNationalFlag(nums, pivot);
+
+    cout << "Partitioned Array: ";
+    for (int val : nums) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
