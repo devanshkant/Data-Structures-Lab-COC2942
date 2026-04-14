@@ -60,6 +60,12 @@ public:
 		n2->next = adj[v];
 		adj[v] = n2;
     }
+    void addDirectedEdge(int u, int v) {
+        Node* n = new Node;
+        n->val = v;
+        n->next = adj[u];
+        adj[u] = n;
+    }
     void display() {
         for (int i = 1; i <= V; i++) {
             if (adj[i] == nullptr) continue;
